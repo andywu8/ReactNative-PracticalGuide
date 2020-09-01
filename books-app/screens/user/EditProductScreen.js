@@ -24,7 +24,12 @@ const EditProductScreen = props => {
   const [imageUrl, setImageUrl] = useState(
     editedProduct ? editedProduct.imageUrl : ''
   );
-  const [price, setPrice] = useState('');
+  const [genre, setGenre] = useState(
+    editedProduct ? editedProduct.genre : ''
+  );
+  const [author, setAuthor] = useState(
+    editedProduct ? editedProduct.author : ''
+  );
   const [description, setDescription] = useState(
     editedProduct ? editedProduct.description : ''
   );
@@ -32,15 +37,15 @@ const EditProductScreen = props => {
   const submitHandler = useCallback(() => {
     if (editedProduct) {
       dispatch(
-        productsActions.updateProduct(prodId, title, description, imageUrl)
+        productsActions.updateProduct(prodId, title, author, genre, description, imageUrl)
       );
     } else {
       dispatch(
-        productsActions.createProduct(title, description, imageUrl, +price)
+        productsActions.createProduct(title, author, genre, description, imageUrl)
       );
     }
     props.navigation.goBack();
-  }, [dispatch, prodId, title, description, imageUrl, price]);
+  }, [dispatch, prodId, title, author, genre, description, imageUrl]);
 
   useEffect(() => {
     props.navigation.setParams({ submit: submitHandler });
@@ -65,16 +70,22 @@ const EditProductScreen = props => {
             onChangeText={text => setImageUrl(text)}
           />
         </View>
-        {editedProduct ? null : (
-          <View style={styles.formControl}>
-            <Text style={styles.label}>Price</Text>
-            <TextInput
-              style={styles.input}
-              value={price}
-              onChangeText={text => setPrice(text)}
-            />
-          </View>
-        )}
+        <View style={styles.formControl}>
+          <Text style={styles.label}>Genre</Text>
+          <TextInput
+            style={styles.input}
+            value={genre}
+            onChangeText={text => setGenre(text)}
+          />
+        </View>
+        <View style={styles.formControl}>
+          <Text style={styles.label}>Author</Text>
+          <TextInput
+            style={styles.input}
+            value={author}
+            onChangeText={text => setAuthor(text)}
+          />
+        </View>
         <View style={styles.formControl}>
           <Text style={styles.label}>Description</Text>
           <TextInput
