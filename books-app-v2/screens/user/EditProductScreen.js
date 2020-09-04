@@ -103,8 +103,8 @@ EditProductScreen.navigationOptions = navData => {
   const submitFn = navData.navigation.getParam('submit');
   return {
     headerTitle: navData.navigation.getParam('productId')
-      ? 'Edit Product'
-      : 'Add Product',
+      ? 'Edit Book'
+      : 'Add Book',
     headerRight: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item

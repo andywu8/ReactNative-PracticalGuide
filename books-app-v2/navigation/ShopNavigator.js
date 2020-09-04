@@ -88,8 +88,8 @@ const AdminNavigator = createStackNavigator(
 const ShopNavigator = createDrawerNavigator(
   {
     Books: ProductsNavigator,
-    Orders: OrdersNavigator,
-    Admin: AdminNavigator
+    BookCatalogue: OrdersNavigator,
+    EditBookList: AdminNavigator
   },
   {
     contentOptions: {
